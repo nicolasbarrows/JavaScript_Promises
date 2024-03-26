@@ -15,10 +15,15 @@ function getList() {
   });
 }
 
-// TODO: Handle the resolved or rejected states of the promise
-
-// TODO: If the promise resolves with the list of hobbits
-// Render the list of hobbits as list items within the unordered list with id="list" (check the index.html file)
-
-// TODO: If the promise rejects with the failure object
-// Display the failure message in the paragraph element with id="error" (check index.html file)
+getList()
+  .then((results) => {
+    results.forEach((i) => {
+      let li = document.createElement("li");
+      li.innerHTML = i;
+      document.getElementById("list").appendChild(li);
+    })
+  })
+  .catch((error) => {
+    let err = document.getElementById("error");
+    err.innerHTML = error.message;
+  });
